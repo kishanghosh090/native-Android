@@ -47,8 +47,10 @@ class MainActivity : ComponentActivity() {
 //                    GreetingPreview()
 //                }
 //                State()
-                    Test()
+//                Test()
+                  LoginUi()
             }
+
         }
     }
 }
