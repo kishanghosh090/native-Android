@@ -30,10 +30,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
-@Preview(showSystemUi = true, showBackground = true)
+//@Preview(showSystemUi = true, showBackground = true)
 @Composable
-fun LoginUi(){
+fun LoginUi(navController: NavController){
 
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -96,7 +97,8 @@ fun LoginUi(){
             Button(onClick = {
                 if (!username.isEmpty() && !password.isEmpty()){
                     Toast.makeText(context,"$username $password",Toast.LENGTH_SHORT).show()
-                    return@Button
+                    navController.navigate(routes.Details(name = username,password = password))
+
                 }
                 else{
 
