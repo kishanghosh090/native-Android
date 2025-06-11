@@ -50,12 +50,19 @@ fun main(){
     mutableList.removeAt(0)
     mutableList[0] = 10
 
+    mutableSet.forEach { value ->
+        println(value)
+    }
     mutableSet.add(6)
     mutableSet.remove(1)
 
     mutableMap["four"] = 4
-    println()
+    println(mutableMap.get("four"))
+    println(mutableMap)
 
+
+    // range operators
+    // .., downTo, step, until, step
 
 
 
