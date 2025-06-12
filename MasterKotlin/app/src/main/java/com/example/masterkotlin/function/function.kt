@@ -7,6 +7,15 @@ fun main(){
     add(1,2)
     printValue("kishan")
     greet("kishan")
+    greetMe("kishan")
+//    println(greetYou ("kishan"){ name -> "Hello $name ...are you fine?"  })
+    println(greetYou ("kishan"){  "Hello $it ...are you fine?"  })
+
+    var person = Person("kishan")
+    person.introduced()
+
+    val d = Dog()
+    d.sound() // → Dog barks
 }
 
 // user defined function
@@ -47,5 +56,40 @@ val greetMe: (String) -> Unit = { name ->
         "akash" -> println("hello akash")
         else -> println("hello guest")
     }
-
 }
+// higher order function
+fun greetYou(name: String, action: (String) -> String): String {
+    return action(name)
+}
+
+
+fun action(name: String): String {
+    return "hello $name"
+}
+
+// member function
+
+class Person(val name: String) {
+    var itIS = this.name
+    fun introduced(){
+        println("this is it ${itIS}")
+
+        println("i am $name")
+    }
+}
+
+// overriding function
+
+open class Animal {
+    open fun sound() {
+        println("Animal makes a sound")
+    }
+}
+
+class Dog : Animal() {
+    override fun sound() {
+        println("Dog barks")
+    }
+}
+
+
