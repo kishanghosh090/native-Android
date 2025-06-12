@@ -9,9 +9,27 @@ interface Animal {
     fun isFly()
 }
 
-class Dog: Animal{
+interface isOk{
+    fun isOk()
+}
+
+// conflicts in the interfaces
+interface A{
+    fun show(){}
+}
+interface B{
+    fun show(){}
+}
+class Dog: Animal,isOk,A,B{
     override fun isFly() {
         println("Dog can't fly")
+    }
+    override fun isOk(){
+        println("hello i am ok")
+    }
+
+    override fun show() {
+        super<B>.show()
     }
 
 }
