@@ -5,6 +5,8 @@ fun main(){
     greet("kishan")
     run()
     add(1,2)
+    printValue("kishan")
+    greet("kishan")
 }
 
 // user defined function
@@ -32,5 +34,18 @@ fun add(a: Int, b: Int): Int = a + b
 
 
 
+// generic function in kotlin( a function that can work with different types of data)
+fun <T> printValue(value: T) {
+    println(value)
+}
 
+// lambda function and higher order function in kotlin ( a function that is not declared but passed as an argument to another function)
 
+val greetMe: (String) -> Unit = { name ->
+    when(name){
+        "kishan" ->  println("hello kishan")
+        "akash" -> println("hello akash")
+        else -> println("hello guest")
+    }
+
+}
