@@ -109,13 +109,9 @@ class Dog: Animal(){
 }
 
 // singleton Object (A class that can have only one object or instance)
-object Counter{
-    var count: Int = 0
-    fun increment(){
-        count++
-    }
-    fun decrement(){
-        count--
+object Database{
+    fun connect(){
+        println("Connected to database")
     }
 }
 
@@ -141,6 +137,7 @@ fun main(){
     val s2 = Shape.Triangle(5.0, 10.0)
     area(s1)
 
+    Database.connect()
 
 
 }
