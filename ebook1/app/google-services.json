@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "372333789896",
+    "project_id": "drive-ed187",
+    "storage_bucket": "drive-ed187.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372333789896:android:5befa3e82559b0cf4e5bfd",
+        "android_client_info": {
+          "package_name": "com.example.ebook1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCg8A1NHtVG--R0h2cHxeqkgXuRyPxCx_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
