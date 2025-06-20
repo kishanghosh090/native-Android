@@ -31,6 +31,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.jetpackcomposecourse.`3_CoreComponents`.AnotatedStringWithListner
+import com.example.jetpackcomposecourse.`3_CoreComponents`.ButtonInJetPackCompose
+import com.example.jetpackcomposecourse.`3_CoreComponents`.FilledButtonSample
 import com.example.jetpackcomposecourse.`3_CoreComponents`.LoginScreen
 import com.example.jetpackcomposecourse.`3_CoreComponents`.OutTextField
 import com.example.jetpackcomposecourse.ui.theme.JetpackComposeCourseTheme
@@ -52,8 +55,12 @@ class MainActivity : ComponentActivity() {
                         colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()
                     ){
 //                        OutTextField()
-                        LoginScreen()
+//                        LoginScreen()
+//                        AnotatedStringWithListner()
+//                        ButtonInJetPackCompose()
+                        FilledButtonSample()
                     }
+
 
                 }
             }
