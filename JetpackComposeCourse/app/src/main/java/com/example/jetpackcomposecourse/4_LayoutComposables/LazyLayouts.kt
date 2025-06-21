@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.example.jetpackcomposecourse.AlartDilogBox.CustomBeautifulDialog
 
 @Composable
 //@Preview(showBackground = true, showSystemUi = true)
@@ -37,6 +38,7 @@ fun CardList(innerPadding: PaddingValues) {
         contentPadding = PaddingValues(bottom = innerPadding.calculateBottomPadding(), top = innerPadding.calculateTopPadding())
     ) {
         items(10) { index ->
+
             Card (
                 modifier = Modifier
                     .fillMaxWidth()

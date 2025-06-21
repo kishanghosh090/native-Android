@@ -29,6 +29,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import  androidx.compose.ui.window.Dialog
+import androidx.compose.ui.zIndex
+
 @Composable
 fun CustomBeautifulDialog() {
     val context = LocalContext.current
@@ -37,7 +39,7 @@ fun CustomBeautifulDialog() {
         onClick = {
             showDialog = true
         },
-        modifier = Modifier.padding(36.dp)
+        modifier = Modifier.padding(76.dp).zIndex(1f)
     ) {
         Text(text = "Show Dialog")
     }
