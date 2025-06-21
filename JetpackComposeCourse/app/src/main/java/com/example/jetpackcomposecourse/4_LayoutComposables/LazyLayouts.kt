@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -23,7 +24,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 
-
 @Composable
 //@Preview(showBackground = true, showSystemUi = true)
 fun CardList(innerPadding: PaddingValues) {
@@ -34,13 +34,13 @@ fun CardList(innerPadding: PaddingValues) {
             .background(Color(0xFFF0F0F0)) // Light background
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        contentPadding = PaddingValues(bottom = innerPadding.calculateBottomPadding(), top = innerPadding.calculateTopPadding(),)
+        contentPadding = PaddingValues(bottom = innerPadding.calculateBottomPadding(), top = innerPadding.calculateTopPadding())
     ) {
         items(10) { index ->
             Card (
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(140.dp),     // Fixed card height for uniformity
+                    .height(190.dp),     // Fixed card height for uniformity
                 shape = RoundedCornerShape(16.dp),
                 elevation = CardDefaults.cardElevation(8.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.White)
@@ -51,6 +51,22 @@ fun CardList(innerPadding: PaddingValues) {
                         .padding(16.dp),
                     verticalArrangement = Arrangement.SpaceBetween
                 ) {
+                    LazyRow (
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ){
+                        items(10) { index ->
+                            Card (
+                                modifier = Modifier
+                                    .padding(7.dp),
+                                colors = CardDefaults.cardColors(containerColor = Color.Green),
+                                shape = RoundedCornerShape(10.dp)
+
+                            ) {
+                                Text(text = "Item $index",modifier = Modifier.padding(8.dp))
+                            }
+                        }
+                    }
                     Text(
                         text = "Card Title $index",
                         style = MaterialTheme.typography.titleMedium,
