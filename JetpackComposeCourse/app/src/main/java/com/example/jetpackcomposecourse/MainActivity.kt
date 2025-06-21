@@ -37,6 +37,11 @@ import com.example.jetpackcomposecourse.`3_CoreComponents`.FilledButtonSample
 import com.example.jetpackcomposecourse.`3_CoreComponents`.LoginScreen
 import com.example.jetpackcomposecourse.`3_CoreComponents`.OutTextField
 import com.example.jetpackcomposecourse.`4_LayoutComposables`.CardList
+import com.example.jetpackcomposecourse.`5_BottomSheet`.BottomSheet
+import com.example.jetpackcomposecourse.AlartDilogBox.CustomBeautifulDialog
+import com.example.jetpackcomposecourse.Cards.ElevatedCards
+import com.example.jetpackcomposecourse.CheckBoxs.CheckBoxs
+import com.example.jetpackcomposecourse.InputChipsInjetpack.InputChipSample
 import com.example.jetpackcomposecourse.ui.theme.JetpackComposeCourseTheme
 import java.time.format.TextStyle
 
@@ -60,7 +65,14 @@ class MainActivity : ComponentActivity() {
 //                        AnotatedStringWithListner()
 //                        ButtonInJetPackCompose()
 //                        FilledButtonSample()
-                        CardList(innerPadding)
+//                        CardList(innerPadding)
+//                        BottomSheet(innerPadding)
+//                          ElevatedCards()
+//                        CheckBoxs()
+//                        InputChipSample()
+                        CustomBeautifulDialog(
+
+                        )
                     }
 
 
