@@ -1,9 +1,18 @@
+
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    kotlin("plugin.serialization") version "2.0.0"
 }
 
+apply<HelloWorldPlugin>()
+class HelloWorldPlugin: Plugin<Project>{
+    override fun apply(target: Project) {
+        println("Hello World")
+    }
+}
 android {
     namespace = "com.example.jetpackcomposecourse"
     compileSdk = 35
@@ -37,6 +46,7 @@ android {
     buildFeatures {
         compose = true
     }
+
 }
 
 dependencies {
@@ -56,6 +66,18 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    
     implementation ("androidx.compose.material3:material3:1.2.1")
     implementation("androidx.constraintlayout:constraintlayout-compose-android:1.1.1")
+
+    implementation("androidx.compose.material:material-icons-extended-android:1.7.8")
+
+    implementation("androidx.navigation:navigation-compose:2.9.0")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
+//    implementation("com.canopas-animated-navigationbar:bottombar:1.0.1")
+
+
 }

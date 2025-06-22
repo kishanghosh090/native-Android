@@ -36,6 +36,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.jetpackcomposecourse.`24_BottomNavBar`.BottomNavigationBar
+import com.example.jetpackcomposecourse.`26_Navigation`.App
 import com.example.jetpackcomposecourse.`4_LayoutComposables`.CardList
 
 import com.example.jetpackcomposecourse.FloatingButton.ExtendedFloatingActionButtonSample
@@ -77,9 +79,18 @@ class MainActivity : ComponentActivity() {
 
 //                        )
 //                        DropDownMenuSample()
-                        NavigationDrawerSample()
+//                        NavigationDrawerSample()
 //                        ExtendedFloatingActionButtonSample()
 //                        ScaffoldSample()
+//                        BottomNavigationBar()
+                        App()
+//                        Box(
+//
+//                            modifier = Modifier
+//                                .fillMaxSize()
+//                                .padding(innerPadding)
+//
+//                        )
                     }
 
 
