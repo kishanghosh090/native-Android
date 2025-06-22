@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.sp
 import com.example.jetpackcomposecourse.`4_LayoutComposables`.CardList
 
 import com.example.jetpackcomposecourse.FloatingButton.ExtendedFloatingActionButtonSample
+import com.example.jetpackcomposecourse.NavigationDrawer.NavigationDrawerSample
 import com.example.jetpackcomposecourse.scaffoldJetpack.ScaffoldSample
 
 import com.example.jetpackcomposecourse.ui.theme.JetpackComposeCourseTheme
@@ -76,8 +77,9 @@ class MainActivity : ComponentActivity() {
 
 //                        )
 //                        DropDownMenuSample()
-                        ExtendedFloatingActionButtonSample()
-                        ScaffoldSample()
+                        NavigationDrawerSample()
+//                        ExtendedFloatingActionButtonSample()
+//                        ScaffoldSample()
                     }
 
 
