@@ -1,4 +1,27 @@
 package com.example.kotlinbasics.FunctionAndClass
+
+
+class Person(val name: String, val age: Int = 23){
+
+    init {
+        println("Hello, my name is $name and I am $age years old.")
+    }
+    fun greet(){
+        println("Hello, my name is $name and I am $age years old.")
+    }
+
+}
+data class coffee(
+    val name: String,
+    val price: Int
+)
+
+fun main(){
+    val person = Person("Kishan", 20)
+    person.greet()
+    println(person.age)
+}
+
 //
 //class User(val name: String) {
 //    companion object {
