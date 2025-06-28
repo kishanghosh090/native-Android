@@ -54,7 +54,7 @@ fun form(block: Form.() -> Unit): Form {
     val myForm = Form()
     println("output" + myForm + myForm.email)
     myForm.block()  // This allows using 'this' inside the block
-    
+
     return myForm
 }
 
