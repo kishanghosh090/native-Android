@@ -11,7 +11,7 @@ class Person(val name: String, val age: Int = 23){
     }
 
 }
-data class coffee(
+data class chaiDetails(
     val name: String,
     val price: Int
 )
