@@ -45,11 +45,18 @@ fun main(){
 //    })
 
 
-    form( block = {
-        name = "chai"
-        email = "chai@example.com"
-    }).show()
+//    form( block = {
+//        name = "chai"
+//        email = "chai@example.com"
+//    }).show()
+
+
+
 }
+fun <T> printData(data: T) {
+    println(data)
+}
+
 fun form(block: Form.() -> Unit): Form {
     val myForm = Form()
     println("output" + myForm + myForm.email)

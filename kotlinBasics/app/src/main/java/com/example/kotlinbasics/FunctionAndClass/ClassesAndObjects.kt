@@ -18,9 +18,38 @@ data class chaiDetails(
 
 fun main(){
     val person = Person("Kishan", 20)
-    person.greet()
-    println(person.age)
+//    person.greet()
+//    println(person.age)
+    val userRepo = Repository<User>()
+    userRepo.add(User("Kishan", 18))
+    userRepo.add(User("Arjun", 20))
+
+//    val productRepo = Repository<Product>()
+//    productRepo.add(Product(1, "Phone"))
+//    productRepo.add(Product(2, "Laptop"))
+
+    println(userRepo.getAll())
+//    println(productRepo.getAll())
 }
+data class User(val name: String, val age: Int)
+data class Product(val id: Int, val title: String)
+
+class Repository<T> {
+    private val items = mutableListOf<T>()
+
+    fun add(item: T) {
+        items.add(item)
+    }
+
+    fun getAll(): List<T> {
+        return items
+    }
+
+    fun getAt(index: Int): T? {
+        return items.getOrNull(index)
+    }
+}
+
 
 //
 //class User(val name: String) {

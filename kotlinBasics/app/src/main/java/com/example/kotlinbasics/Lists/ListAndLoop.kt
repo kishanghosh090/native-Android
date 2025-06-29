@@ -56,5 +56,5 @@ class BankAccount(var accountHolder: String,var Balance: Double){
 fun main(){
     val myBankAccount = BankAccount("kishan", 1000000.0)
     println(myBankAccount.accountHolder )
-    
+
 }
