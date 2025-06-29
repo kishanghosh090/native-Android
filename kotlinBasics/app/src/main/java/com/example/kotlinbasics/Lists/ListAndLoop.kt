@@ -7,10 +7,12 @@ fun main(){
     shoppingMulable.remove("ram")
     shoppingMulable.removeAt(0)
 
+    println("is contain " + shoppingMulable.contains("SSD"))
+
     for (
-        item in shoppingList
+        item in 0 until shoppingList.size
     ){
-        println(item)
+        println("$item " + shoppingList[item])
     }
     var i = 0
     while (i < shoppingMulable.size){
