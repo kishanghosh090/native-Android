@@ -4,30 +4,34 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.LocalIndication
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
@@ -53,8 +57,18 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun UnitConverter(innerPadding: PaddingValues){
-    var text = remember { mutableStateOf("") }
+
     var focousManager = LocalFocusManager.current
+    var text = remember { mutableStateOf("") }
+    var outputVal by remember { mutableStateOf("") }
+    var inputUnit by remember { mutableStateOf("Centimeters") }
+    var outputUnit by remember { mutableStateOf("Meters") }
+    var iExpanded by remember { mutableStateOf(false) }
+    var oExpanded by remember { mutableStateOf(false) }
+
+    val conversionFactors = remember { mutableStateOf(0.01) }
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -109,11 +123,122 @@ fun UnitConverter(innerPadding: PaddingValues){
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ){
-            Button(
-                onClick = {},
-                modifier = Modifier.padding(end = 16.dp)
-            ) {
-                Text(text = "Convert")
+            Box(){
+                Button(
+                    onClick = {
+                        iExpanded = true
+                    },
+                    modifier = Modifier.padding(end = 10.dp)
+                ) {
+                    Text(text = "$inputUnit")
+                    Icon(
+                        Icons.Default.ArrowDropDown,
+                        contentDescription = "Arrow Drop Down"
+                    )
+                }
+                DropdownMenu(
+                    expanded = iExpanded,
+                    onDismissRequest = {
+                        iExpanded = false
+                    },
+                    shape = RoundedCornerShape(17.dp)
+
+                ) {
+                    DropdownMenuItem(
+                        text = {
+                            Text(text = "Centimeters")
+                               },
+                        onClick = {
+                            inputUnit = "Centimeters"
+                            iExpanded = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = {
+                            Text(text = "Meters")
+                               },
+                        onClick = {
+                            inputUnit = "Meters"
+                            iExpanded = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = {
+                            Text(text = "Feet")
+                               },
+                        onClick = {
+                            inputUnit = "Feet"
+                            iExpanded = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = {
+                            Text(text = "Miles")
+                               },
+                        onClick = {
+                            inputUnit = "Miles"
+                            iExpanded = false
+                        }
+                    )
+                }
+            }
+
+            Box(){
+                Button(
+                    onClick = {
+                        oExpanded = true
+                    },
+                    modifier = Modifier.padding(end = 10.dp)
+                ) {
+                    Text(text = "$outputUnit")
+                    Icon(
+                        Icons.Default.ArrowDropDown,
+                        contentDescription = "Arrow Drop Down"
+                    )
+                }
+                DropdownMenu(
+                    expanded = oExpanded,
+                    onDismissRequest = {
+                        oExpanded = false
+                    }
+                ) {
+                    DropdownMenuItem(
+                        text = {
+                            Text(text = "Centimeters")
+                        },
+                        onClick = {
+                            outputUnit = "Centimeters"
+                            oExpanded = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = {
+                            Text(text = "Meters")
+                        },
+                        onClick = {
+                            outputUnit = "Meters"
+                            oExpanded = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = {
+                            Text(text = "Feet")
+                        },
+                        onClick = {
+                            outputUnit = "Feet"
+                            oExpanded = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = {
+                            Text(text = "Miles")
+                        },
+                        onClick = {
+                            outputUnit = "Miles"
+                            oExpanded = false
+                        }
+                    )
+                }
             }
 
         }
