@@ -28,6 +28,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -68,6 +69,12 @@ fun UnitConverter(innerPadding: PaddingValues){
 
     val conversionFactors = remember { mutableStateOf(0.01) }
 
+    fun convertUnit(){
+        val inputValDouble = text.value.toDoubleOrNull() ?: 0.0
+        val conversionFactor = conversionFactors.value
+        val result = (inputValDouble * conversionFactor).toString()
+        outputVal = result
+    }
 
     Column(
         modifier = Modifier
@@ -96,6 +103,7 @@ fun UnitConverter(innerPadding: PaddingValues){
             value = text.value,
             onValueChange = {
                 text.value = it
+                convertUnit()
             },
             placeholder = {
                 Text(text = "Enter a value")
@@ -151,6 +159,8 @@ fun UnitConverter(innerPadding: PaddingValues){
                         onClick = {
                             inputUnit = "Centimeters"
                             iExpanded = false
+                            conversionFactors.value = 0.01
+                            convertUnit()
                         }
                     )
                     DropdownMenuItem(
@@ -160,6 +170,8 @@ fun UnitConverter(innerPadding: PaddingValues){
                         onClick = {
                             inputUnit = "Meters"
                             iExpanded = false
+                            conversionFactors.value = 1.0
+                            convertUnit()
                         }
                     )
                     DropdownMenuItem(
@@ -169,6 +181,8 @@ fun UnitConverter(innerPadding: PaddingValues){
                         onClick = {
                             inputUnit = "Feet"
                             iExpanded = false
+                            conversionFactors.value = 0.3048
+                            convertUnit()
                         }
                     )
                     DropdownMenuItem(
@@ -178,6 +192,8 @@ fun UnitConverter(innerPadding: PaddingValues){
                         onClick = {
                             inputUnit = "Miles"
                             iExpanded = false
+                            conversionFactors.value = 1609.35
+                            convertUnit()
                         }
                     )
                 }
@@ -209,6 +225,9 @@ fun UnitConverter(innerPadding: PaddingValues){
                         onClick = {
                             outputUnit = "Centimeters"
                             oExpanded = false
+                            conversionFactors.value = 0.1
+                            convertUnit()
+
                         }
                     )
                     DropdownMenuItem(
@@ -218,6 +237,9 @@ fun UnitConverter(innerPadding: PaddingValues){
                         onClick = {
                             outputUnit = "Meters"
                             oExpanded = false
+                            conversionFactors.value = 1.0
+                            convertUnit()
+
                         }
                     )
                     DropdownMenuItem(
@@ -227,6 +249,8 @@ fun UnitConverter(innerPadding: PaddingValues){
                         onClick = {
                             outputUnit = "Feet"
                             oExpanded = false
+                            conversionFactors.value = 3.28084
+                            convertUnit()
                         }
                     )
                     DropdownMenuItem(
@@ -236,15 +260,21 @@ fun UnitConverter(innerPadding: PaddingValues){
                         onClick = {
                             outputUnit = "Miles"
                             oExpanded = false
+                            conversionFactors.value = 0.000621371
+                            convertUnit()
                         }
                     )
                 }
             }
 
         }
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(text = outputVal, style = MaterialTheme.typography.headlineMedium)
 
     }
 }
+
+
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
