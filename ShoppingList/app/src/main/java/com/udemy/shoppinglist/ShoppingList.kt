@@ -35,7 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-
+import kotlin.collections.plus
 
 
 data class ShoppingItem(
@@ -84,20 +84,22 @@ fun ShoppingListApp(
                 .padding(16.dp)
         ){
             items(sItems){ item ->
+
+
                 ShoppingListItem(
                     item,
-                    onEdit = {
+                    onEdit = { id: Int, name: String, quantity: Int ->
                         sItems = sItems.map {
-                            if (it.id == item.id) {
-                                it.copy(isEditing = true)
-                            } else {
-                                it.copy(isEditing = false)
-                            }
+                          if (id == it.id){
+                              it.copy(name = name, quantity = quantity)
+                          } else {
+                              it
+                          }
                         }
                     },
                     onDelete = { id ->
                         sItems = sItems.filter { it.id != id }
-                    }
+                    },
                 )
             }
         }
@@ -182,9 +184,10 @@ fun ShoppingListApp(
 @Composable
 fun ShoppingListItem(
     item: ShoppingItem,
-    onEdit: () -> Unit,
-    onDelete: (id: Int) -> Unit
-){
+    onEdit: (id: Int, name: String, quantity: Int) -> Unit,
+    onDelete: (Int) -> Unit,
+
+    ){
 
     var randomColorNumber = (0..4).random()
     var randomColor = Color.Red
@@ -195,6 +198,12 @@ fun ShoppingListItem(
         3 -> randomColor = Color.Yellow
         4 -> randomColor = Color.Magenta
     }
+    var showDialogDelete by remember { mutableStateOf(false) }
+    var showDialogEdit by remember { mutableStateOf(false) }
+    var itemName by remember { mutableStateOf(item.name) }
+    var itemQuantity by remember { mutableStateOf(item.quantity.toString()) }
+    var itemId by remember { mutableStateOf(0) }
+
     Box(
         modifier = Modifier.padding(vertical = 8.dp).border(
             border = BorderStroke(2.dp, randomColor),
@@ -206,7 +215,6 @@ fun ShoppingListItem(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ){
-
             Text(
                 text = item.name,
                 style = MaterialTheme.typography.bodyLarge,
@@ -217,16 +225,115 @@ fun ShoppingListItem(
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(start = 8.dp)
             )
-
-            IconButton (onClick = onEdit) {
+            IconButton (onClick = {
+                showDialogEdit = true
+                itemName = item.name
+                itemQuantity = item.quantity.toString()
+                itemId = item.id
+            }) {
                 Icon(imageVector = Icons.Default.Edit, contentDescription = null)
             }
-            IconButton (onClick = { onDelete(item.id) }) {
+            IconButton (onClick = { showDialogDelete = true }) {
                 Icon(imageVector = Icons.Default.Delete, contentDescription = null)
             }
-
-
-
         }
+    }
+
+    if (showDialogDelete){
+        AlertDialog(
+            onDismissRequest = {
+                showDialogDelete = false
+            },
+            title = {
+                Text(text = "Do you want to delete this item?")
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        onDelete(item.id)
+                        showDialogDelete = false
+                    }
+                ) {
+                    Text(text = "Delete")
+                }
+            },
+            dismissButton = {
+                Button(
+                    onClick = {
+                        showDialogDelete = false
+                    }
+                    ) {
+                    Text(text = "Cancel")
+                }
+            },
+
+        )
+    }
+
+    if (showDialogEdit){
+        AlertDialog(
+            modifier = Modifier
+                .border(
+                    color = Color.Green,
+                    width = 1.dp,
+                    shape = AlertDialogDefaults.shape
+                ),
+            onDismissRequest = {
+                showDialogEdit = false
+            },
+            title = {
+                Text(text = "Add Shopping Item")
+            },
+            text = {
+                Column {
+                    OutlinedTextField(
+                        value = itemName,
+                        onValueChange = {
+                            itemName = it
+                        },
+                        label = { Text(text = "Item Name") },
+                        singleLine = true,
+                        modifier = Modifier.padding(vertical = 8.dp),
+                        shape = RoundedCornerShape(10.dp)
+
+                    )
+                    OutlinedTextField(
+                        value = itemQuantity,
+                        onValueChange = {
+                            itemQuantity = it
+                        },
+                        label = { Text(text = "Quantity") },
+                        singleLine = true,
+                        modifier = Modifier.padding(vertical = 8.dp),
+                        shape = RoundedCornerShape(10.dp)
+                    )
+                }
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        onEdit(
+                            itemId,
+                            itemName,
+                            itemQuantity.toIntOrNull() ?: 0
+                        )
+                        showDialogEdit = false
+
+                    }
+                ) {
+                    Text(text = "Add")
+                }
+            },
+            dismissButton = {
+                Button(
+                    onClick = {
+                        showDialogEdit = false
+                    }
+                ) {
+                    Text(text = "Cancel")
+                }
+            },
+
+            )
     }
 }
