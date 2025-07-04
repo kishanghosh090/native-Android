@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShoppingList"
         tools:targetApi="31">
+
+        <!-- Required for osmdroid -->
+        <meta-data
+            android:name="osmdroid.basePath"
+            android:value="osmdroid"/>
+        <meta-data
+            android:name="osmdroid.cachePath"
+            android:value="osmdroid/cache"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
