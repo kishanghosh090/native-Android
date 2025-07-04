@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.udemy.shoppinglist"
-    compileSdk = 35
+    compileSdk = 36// from 35 to 36
 
     defaultConfig {
         applicationId = "com.udemy.shoppinglist"
@@ -56,4 +56,15 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation("com.google.maps.android:maps-compose:2.15.0")
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.1")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("androidx.navigation:navigation-compose:2.7.4")
+    implementation("org.osmdroid:osmdroid-android:6.1.10")
+
+
 }
