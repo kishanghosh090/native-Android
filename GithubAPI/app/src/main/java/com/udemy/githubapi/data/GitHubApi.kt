@@ -14,4 +14,5 @@ val recipeService = retrofit.create(GitHubApi::class.java)
 interface GitHubApi {
     @GET("users/{username}")
     suspend fun getUser(@Path("username") username: String): GitHubUser
+
 }
