@@ -38,6 +38,8 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                        RecipeFun(viewModel = viewModel, innerPadding = innerPadding)
 
+                    RecipeScreen(
+                    )
                 }
             }
         }
