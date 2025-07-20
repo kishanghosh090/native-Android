@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
@@ -20,11 +21,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import com.vedabits.wishlistapp.data.DummyWish
+import com.vedabits.wishlistapp.data.Wish
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeView(){
+fun HomeView(
+    viewModel: WishViewModel,
+    navController: NavHostController
+){
 //    val context = LocalContext.current
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 //    var isScrollBarVisible = mutableStateOf(false)
@@ -41,13 +48,12 @@ fun HomeView(){
 //           }
         },
         floatingActionButton = {
-//            FloatingActionButtonView(
-//                onFabClick = {}
-//            )
             FloatingActionButton(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    navController.navigate(Screen.AddScreen.route)
+                },
                 modifier = Modifier
-                    .padding(16.dp),
+                    .padding(20.dp),
                 containerColor = colorResource(R.color.black),
                 contentColor = colorResource(R.color.white)
 
@@ -68,20 +74,13 @@ fun HomeView(){
                 .padding(innerPadding)
         ) {
 
-            items(10) {
+            items(DummyWish.wishList) { item ->
                 WishItem(
-                    wish = Wish(
-                        title = "Wish $it",
-                        description = "Description $it"
-                    ),
-                    onClick = {
-                        //TODO
-                    }
+                    wish = item,
+                    onClick = {}
                 )
             }
-
         }
-
     }
 }
 
@@ -109,3 +108,4 @@ fun WishItem(wish: Wish, onClick:()-> Unit){
         )
     }
 }
+

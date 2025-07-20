@@ -20,8 +20,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             WishListAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    HomeView()
+//                    HomeView()
+                    Navigation()
                 }
+
             }
         }
     }
