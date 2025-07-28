@@ -32,7 +32,8 @@ fun MainView(){
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet (
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                drawerContainerColor =   androidx.compose.material3.MaterialTheme.colorScheme.primary,
             ){
                 Text("Drawer title", modifier = Modifier.padding(16.dp))
                 repeat(5) {
@@ -73,3 +74,10 @@ fun MainView(){
         }
     }
 }
+
+
+@Composable
+fun DrawerItems(
+    selected: Boolean,
+    onDrawerItemClick: () -> Unit,
+){}
