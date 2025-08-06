@@ -23,6 +23,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -44,6 +46,10 @@ fun MainView(){
     val NavBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = NavBackStackEntry?.destination?.route
 
+    val title = remember {
+        mutableStateOf("")
+    }
+
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
@@ -59,7 +65,10 @@ fun MainView(){
                         selected = currentRoute == item.dRoute,
                         item = item,
                         onDrawerItemClicked = {
-                            scope.launch { drawerState.close() }
+                            scope.launch { drawerState.close()
+                            }
+
+                            navController.navigate(item.dRoute)
                         }
                     )
                 }
