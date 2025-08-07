@@ -31,7 +31,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -75,6 +74,8 @@ fun MainView(){
                         selected = currentRoute == item.dRoute,
                         item = item,
                         onDrawerItemClicked = {
+                            viewModel.setCurrentScreen(item)
+                            title.value = item.dTitle
                             scope.launch { drawerState.close()
                             }
 
@@ -93,7 +94,7 @@ fun MainView(){
         Scaffold(
             topBar = {
               TopAppBar(
-                  title = { Text(text = "TopAppBar") },
+                  title = { Text(text = title.value) },
                   navigationIcon = {
                       IconButton(onClick = { scope.launch { drawerState.open() } }) {
                           Icon(
@@ -158,7 +159,7 @@ fun Navigation(
     ) {
         composable(Screens.DrawerScreens.Account.dRoute) {
 
-            Text(text = "Account")
+            AccountView()
         }
         composable(Screens.DrawerScreens.Subscription.dRoute) {
 
