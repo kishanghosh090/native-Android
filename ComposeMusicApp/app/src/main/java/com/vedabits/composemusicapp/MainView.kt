@@ -3,8 +3,8 @@ package com.vedabits.composemusicapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -28,11 +28,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
@@ -104,9 +106,10 @@ fun MainView(){
               )
             }
         ) { innerPadding ->
-            Text(
-                text = "Body content",
-                modifier = Modifier.padding(innerPadding)
+            Navigation(
+                navController = navController,
+                paddingValues = innerPadding,
+                viewModel = viewModel
             )
         }
     }
@@ -140,3 +143,35 @@ fun DrawerItem(
         )
     }
 }
+
+
+@Composable
+fun Navigation(
+    navController: NavHostController,
+    paddingValues: PaddingValues,
+    viewModel: MainViewModel
+){
+    NavHost(
+        navController = navController,
+        startDestination = Screens.DrawerScreens.Account.dRoute,
+        modifier = Modifier.padding(paddingValues)
+    ) {
+        composable(Screens.DrawerScreens.Account.dRoute) {
+
+            Text(text = "Account")
+        }
+        composable(Screens.DrawerScreens.Subscription.dRoute) {
+
+            Text(text = "Subscription")
+        }
+        composable(Screens.DrawerScreens.AddAccount.dRoute) {
+
+            AccountDialog(
+                dialogOpen = viewModel.dialogOpen
+            )
+        }
+    }
+
+}
+
+
