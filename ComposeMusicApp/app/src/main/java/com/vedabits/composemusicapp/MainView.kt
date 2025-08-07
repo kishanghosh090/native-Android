@@ -163,7 +163,7 @@ fun Navigation(
         }
         composable(Screens.DrawerScreens.Subscription.dRoute) {
 
-            Text(text = "Subscription")
+            Subscription()
         }
         composable(Screens.DrawerScreens.AddAccount.dRoute) {
 
