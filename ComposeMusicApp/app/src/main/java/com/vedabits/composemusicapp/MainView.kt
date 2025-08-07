@@ -31,6 +31,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -42,12 +43,19 @@ fun MainView(){
 
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
+
+    val viewModel: MainViewModel = viewModel()
+
     val navController = rememberNavController()
     val NavBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = NavBackStackEntry?.destination?.route
 
+    val currentScreen = remember {
+        viewModel.currentScreen.value
+    }
+
     val title = remember {
-        mutableStateOf("")
+        mutableStateOf(currentScreen.title)
     }
 
     ModalNavigationDrawer(
