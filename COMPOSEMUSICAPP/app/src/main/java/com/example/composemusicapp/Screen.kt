@@ -5,6 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed  class Screen(
@@ -26,7 +27,7 @@ sealed  class Screen(
         object Subscription: DrawerScreen(
             dTitle = "Subscription",
             dRoute = "Subscribe",
-            Icons.Default.Favorite
+            Icons.Default.PlayArrow
         )
         object AddAccount: DrawerScreen(
             dTitle = "Add Account",
@@ -36,3 +37,9 @@ sealed  class Screen(
     }
 
 }
+
+val screensInDrawer = listOf(
+    Screen.DrawerScreen.AddAccount,
+    Screen.DrawerScreen.Subscription,
+    Screen.DrawerScreen.Account
+)
