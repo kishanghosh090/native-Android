@@ -19,3 +19,16 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+// main routine
+fun main(){
+    first()
+    second()
+}
+
+fun first(){
+
+}
+fun second(){
+
+}
