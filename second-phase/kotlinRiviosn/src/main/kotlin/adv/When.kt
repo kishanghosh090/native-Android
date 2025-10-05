@@ -27,6 +27,7 @@ fun main(){
         }
 
         println(input / 0)
+        throw Exception("chai exception")
     }catch (e: Exception){
         println("exception happen $e")
     }
