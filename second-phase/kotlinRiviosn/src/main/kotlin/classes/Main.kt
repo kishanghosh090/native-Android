@@ -1,4 +1,6 @@
 package org.example.classes
 
-class Main {
+fun main(){
+    println("hello from chai")
+    return
 }
