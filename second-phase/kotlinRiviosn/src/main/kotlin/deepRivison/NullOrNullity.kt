@@ -6,4 +6,5 @@ fun main(){
     val inputInt: Int = input.toIntOrNull() ?: -1
 
     println(inputInt)
+
 }
