@@ -2,6 +2,7 @@ package org.example.deepRivison
 
 fun main(){
     println(myOwnFun("hello from kishan"))
+    println(myOwnFun("hello from chai code..."))
 }
 
 
